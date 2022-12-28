@@ -1,0 +1,127 @@
+$font-stack: Helvetica, sans-serif;
+$primary-color: #004c6d;
+$textColor: #fff;
+$answerBackColor:#7aa6c2;
+$qeustionBackColor:#069;
+$layout-breakpoint-small: 960px;
+
+@mixin bodyy($pdng: 10px) {
+  box-sizing: border-box;
+  padding: $pdng;
+  font: 100% $font-stack;
+  background-color: $primary-color;
+}
+@mixin answerDesign ($backgrnd: $answerBackColor) {
+  font-size: large;
+  font-family: cursive;
+  background-color: $backgrnd;
+  color: $textColor;
+  border : 2px solid $answerBackColor;
+  border-radius: 5px;
+  padding: 15px;
+   height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+%paraDesign{
+  color: $textColor;
+  border: 2px solid $qeustionBackColor;
+  border-radius: 10px;
+  padding: 50px;
+  background-color: $qeustionBackColor;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+body {
+  @include bodyy($pdng: 10px);
+}
+
+.progress-bar {
+  width: 100%;
+  height: 3em;
+  background-color: $qeustionBackColor;
+  border-radius: 10px;
+  color: $textColor;
+}
+
+.progress-done{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color:$answerBackColor;
+  transition: 1s ease 0.3s;
+  height:100%;
+  width:0;
+  border-radius: 10px;
+}
+
+.progress-Time{
+  width: 100%;
+  height: 1em;
+  background-color: $qeustionBackColor;
+  border-radius: 10px;
+  color: $textColor;
+  margin-bottom: 20px;
+}
+#Bar-Time {
+  width:100%;
+  height: 100%;
+  background-color:$answerBackColor;
+  border-radius: 10px;
+}
+.hidden{
+  display: none;
+}
+
+.answerContainer{
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+  grid-template-rows: auto;
+}
+
+.container{
+  margin-top: 100px;
+  text-align: center;
+   
+  color: $textColor;
+}
+
+.question{
+  @extend %paraDesign;
+}
+.scrour{
+  @extend %paraDesign;
+  font-size: 30px;
+
+}
+.rules{
+  @extend %paraDesign;
+  text-align: start;
+  font-size: 20px;
+ }
+.startQuiz{
+  background-color: $answerBackColor;
+  width: 120px;
+  height: 40px;
+  border: 0 solid transparent;
+  border-radius: 10px;
+}
+.answerBefor{
+  @include answerDesign();
+}
+.answerCorrect{
+  @include answerDesign($backgrnd: #52ea09);
+}
+
+.answerNotCorrect{
+  @include answerDesign($backgrnd:  #d70000);
+}
+
+@media (min-width: $layout-breakpoint-small) {
+  body{
+    @include bodyy($pdng: 100px)
+  }
+}
