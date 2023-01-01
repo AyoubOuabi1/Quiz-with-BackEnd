@@ -4,25 +4,21 @@ spl_autoload_register(function($className) {
     $file = '../Classes/'.$className.'.php';
     require $file;
 });
-
-function getQuastions()  {
+getQuastions();
+function getQuastions() {
     $arr = array();
     foreach (Question::getQuestions() as $question) {
-        $arr=getQuastions($question);
+        $arr[]=array(
+            'id' => $question['id'],
+            'question' =>htmlentities($question['question'], ENT_QUOTES, "UTF-8"),
+            'choice1'=>htmlentities($question['choice1'],ENT_NOQUOTES),
+            'choice2'=>htmlentities($question['choice2'],ENT_NOQUOTES),
+            'choice3'=>htmlentities($question['choice3'],ENT_NOQUOTES),
+            'choice4'=>htmlentities($question['choice4'],ENT_NOQUOTES),
+            'answer'=>htmlentities($question['correctAnswer'],ENT_NOQUOTES)
+        );
     }
-    return  json_decode($arr);
+    echo json_encode($arr);
 }
- function getMaxScore(){
 
- }
-function getArray(array $sourceArray) : array {
-    $newArray[]=array(
-        'id' => $sourceArray['id'],
-        'choice1'=>$sourceArray['choice1'],
-        'choice2'=>$sourceArray['choice2'],
-        'choice3'=>$sourceArray['choice3'],
-        'choice4'=>$sourceArray['choice4'],
-        'correcctAnswer'=>$sourceArray['correcctAnswer']
-    );
-    return $newArray;
-}
+

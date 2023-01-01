@@ -36,11 +36,11 @@ function rangeNumber(maxValue){
     }
 }
 function getData(){
-
     $.ajax({
-        "url": "./assets/questions.json",
+        "url": "http://localhost/QuizBackEnd/Controller/questions.php",
         "dataType": "json",
         success: function(data){
+            console.log(data)
             loadQuestion(data)
         }
     })
@@ -49,12 +49,12 @@ function  loadQuestion(data){
     let dataSize = data.length;
     let index = 0;
     let CorrectAnswer=0;
-    let counter = 0;
+    let counter = 1;
     rangeNumber(dataSize);
     console.log(arrayNumber);
     printQuestion(data, 0);
     changeProgress(0,data.length);
-    timer(3,data,counter);
+    //timer(3,data,counter);
     for(let i=0; i<5; i++) {
         ClickedButton[i].addEventListener('click',function () {
             progressDone.style.marginLeft =`0px`;
@@ -106,7 +106,7 @@ function  loadQuestion(data){
     }
 }
 
-function timer(delay,data,counter) {
+/*function timer(delay,data,counter) {
 
     let width = 100;
     let smout = 0.1;
@@ -134,6 +134,6 @@ function timer(delay,data,counter) {
         }
     }, newDelay);
 
-}
+}*/
 
 

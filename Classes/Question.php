@@ -11,9 +11,9 @@ class Question
     private $correctAnswer;
     static function getQuestions() : array{
         $cnct=DbConnection::connect();
-        $stmt = $cnct->prepare("select * from Questions");
+        $stmt = $cnct->prepare("select * from questions");
         $stmt->execute();
         $cnct=null;
-        return $stmt->fetchAll();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
