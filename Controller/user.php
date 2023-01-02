@@ -16,7 +16,7 @@ function checkUser(){
     $password=$_POST['password'];
     if(User::checkUser($username,$password)){
 
-        header('Location: http://localhost/QuizBackEnd/quiz.php');
+        header('Location: http://localhost/QuizBackEnd/index.php');
     }else {
         echo 'Please enter';
     }

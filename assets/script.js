@@ -14,8 +14,17 @@ function startQuiz(){
     getData();
     $("#rulesPar").addClass("hidden");
     $("#answerPar").removeClass("hidden");
+}
+function retake(){
+
+    location.reload();
+   // getData();
 
 }
+function logOut() {
+    window.location.href = "http://localhost/QuizBackEnd/Controller/LogOut.php";
+}
+
 //getData();
 
 function printQuestion(data, arrayNumberCounter) {
