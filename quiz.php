@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <div id="rulesPar" class="rules">
-
+                <p style="text-align: center;font-size: 50px"><?php session_start(); echo ("Welcome Back ".$_SESSION['userData']['username'])?></p>
                 <div class="titles">QuizzYD Rules</div>
                 <p>1. You have 30 secondes in every question.</p>
                 <p>2. You can't back into the previous question if you click "Next".</p>
@@ -48,7 +48,13 @@
 
 
         <div class="scrour hidden" id="scrPar">
-            <p>your score  is <span id="scr">12</span></p>
+            <p>your Current score  is <span id="scr">12</span></p>
+            <p>your top score  is <span id="topScr">12</span></p>
+            <div>
+                <button type="button" class="startQuiz" onclick="startQuiz()">Retake</button>
+                <button type="button" class="startQuiz" onclick="startQuiz()">LogOut</button>
+                <button type="button" class="startQuiz" onclick="startQuiz()">my Data</button>
+            </div>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

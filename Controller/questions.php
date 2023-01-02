@@ -10,7 +10,7 @@ function getQuastions() {
     foreach (Question::getQuestions() as $question) {
         $arr[]=array(
             'id' => $question['id'],
-            'question' =>htmlentities($question['question'], ENT_QUOTES, "UTF-8"),
+            'question' =>htmlspecialchars($question['question'], ENT_QUOTES),
             'choice1'=>htmlentities($question['choice1'],ENT_NOQUOTES),
             'choice2'=>htmlentities($question['choice2'],ENT_NOQUOTES),
             'choice3'=>htmlentities($question['choice3'],ENT_NOQUOTES),

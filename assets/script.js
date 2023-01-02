@@ -45,6 +45,29 @@ function getData(){
         }
     })
 }
+
+function updateUser(score) {
+    $.ajax({
+        "type": "POST",
+        "url": "http://localhost/QuizBackEnd/Controller/user.php",
+         "data": {SCORE:score,functionName: "updateUser"},
+        success: function(data){
+            console.log(data);
+        }
+    })
+}
+
+function getMaxScore() {
+    $.ajax({
+        "type": "POST",
+        "url": "http://localhost/QuizBackEnd/Controller/user.php",
+        "data": {functionName: "maxScore"},
+        success: function(data){
+            console.log(data);
+            $('#topScr').html(data);
+        }
+    })
+}
 function  loadQuestion(data){
     let dataSize = data.length;
     let index = 0;
@@ -61,8 +84,7 @@ function  loadQuestion(data){
 
             if(counter<dataSize){
                 if(data[arrayNumber[index]].answer==ClickedButton[i].getAttribute("id")){
-                    console.log("this is correct")
-                    CorrectAnswer+=500;
+                     CorrectAnswer+=500;
                     ClickedButton[i].classList.add("answerCorrect");
 
                 }else {
@@ -84,7 +106,6 @@ function  loadQuestion(data){
             }else if(counter===dataSize){
                 changeProgress(counter,dataSize);
                 if(data[arrayNumber[index]].answer==ClickedButton[i].getAttribute("id")){
-                    console.log("this is correct")
                     CorrectAnswer+=500;
                     ClickedButton[i].classList.add("answerCorrect");
 
@@ -92,10 +113,13 @@ function  loadQuestion(data){
                     ClickedButton[i].classList.add("answerNotCorrect");
 
                 }
+                updateUser(CorrectAnswer);
                 setTimeout(function (){
                     $("#scr").html(`${CorrectAnswer}`);
+                    getMaxScore();
                     $("#scrPar").removeClass("hidden");
                     $("#answerPar").addClass("hidden");
+
                 },500)
 
 

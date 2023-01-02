@@ -7,7 +7,6 @@ class User
     private $password;
     private $score;
     private $operatingSystem;
-    private $date;
     private $browser;
     private $adressIp;
 
@@ -15,16 +14,14 @@ class User
      * @param $id
      * @param $score
      * @param $operatingSystem
-     * @param $date
      * @param $browser
      * @param $adressIp
      */
-    public function __construct($id, $score, $operatingSystem, $date, $browser, $adressIp)
+    public function __construct($id, $score, $operatingSystem, $browser, $adressIp)
     {
         $this->id = $id;
         $this->score = $score;
         $this->operatingSystem = $operatingSystem;
-        $this->date = $date;
         $this->browser = $browser;
         $this->adressIp = $adressIp;
     }
@@ -32,21 +29,31 @@ class User
 
     static function checkUser($userName,$password) : bool{
         $cnct=DbConnection::connect();
-        $stmt=$cnct->prepare("SELECT id FROM user WHERE username ='$userName' and password ='$password'");
+        $stmt=$cnct->prepare("SELECT * FROM userr WHERE username ='$userName' and password ='$password'");
         $stmt->execute();
         if ($stmt->rowCount()){
             session_start();
-            $_SESSION['id'] = $stmt->fetch();
+            $_SESSION['userData'] = $stmt->fetch(PDO::FETCH_ASSOC);
             $cnct=null;
             return true;
         }
         $cnct=null;
         return false;
-
     }
-    function insertUser() : bool{
+    function updateUser() : bool{
         $cnct=DbConnection::connect();
-        $stmt = $cnct->prepare("update user set score=$this->score,operatingSystem=$this->operatingSystem,date=$this->date,browser=$this->browser,adressIp=$this->adressIp where id = $this->id");
+
+        $qry=$cnct->prepare("SELECT score from userr WHERE id =$this->id");
+        $qry->execute();
+        $oldScore=$qry->fetch(PDO::FETCH_ASSOC);
+        $old=$oldScore['score'];
+        if($old>=$this->score){
+            $stmt = $cnct->prepare("update userr set score=$old,operatingSystem='$this->operatingSystem',date=SYSDATE(),browser='$this->browser',adressIp='$this->adressIp' where id = $this->id");
+
+
+        }else{
+            $stmt = $cnct->prepare("update userr set score=$this->score,operatingSystem='$this->operatingSystem',date=SYSDATE(),browser='$this->browser',adressIp='$this->adressIp' where id = $this->id");
+        }
         $stmt->execute();
         if($stmt->rowCount()){
             $cnct=null;
@@ -55,12 +62,11 @@ class User
         $cnct=null;
         return false;
     }
-
-    static function getMaxScore() : array {
+    static function getMaxScore($id) : array {
         $cnct=DbConnection::connect();
-        $stmt=$cnct->prepare("select username from user order by score desc limit 1");
+        $stmt=$cnct->prepare("select score from userr where id = $id");
         $stmt->execute();
         $cnct=null;
-        return $stmt->fetch();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }
