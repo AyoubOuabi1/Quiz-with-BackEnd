@@ -18,7 +18,7 @@ function getQuastions() {
             'answer'=>htmlentities($question['correctAnswer'],ENT_NOQUOTES)
         );
     }
-    echo json_encode($arr);
+    return json_encode($arr);
 }
 
 

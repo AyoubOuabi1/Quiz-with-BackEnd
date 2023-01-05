@@ -1,7 +1,6 @@
 const progressDone = document.querySelector('.progress-done');
 let ClickedButton = document.querySelectorAll('button');
 let arrayNumber=[];
-let id_timer;
 function changeProgress(maxValue,finalValue){
     progressDone.style.width=`${(maxValue*100)/finalValue}%`;
     if(((maxValue*100)/finalValue)!==0.00){
@@ -86,7 +85,6 @@ function  loadQuestion(data){
     console.log(arrayNumber);
     printQuestion(data, 0);
     changeProgress(0,data.length);
-    //timer(3,data,counter);
     for(let i=0; i<5; i++) {
         ClickedButton[i].addEventListener('click',function () {
             progressDone.style.marginLeft =`0px`;
@@ -138,35 +136,5 @@ function  loadQuestion(data){
         })
     }
 }
-
-/*function timer(delay,data,counter) {
-
-    let width = 100;
-    let smout = 0.1;
-
-    let newDelay = (delay*1000*smout)/100;
-    clearInterval(id_timer);
-    id_timer = setInterval(function (){
-        if (width <=0) {
-            clearInterval(id_timer);
-            i = 0;
-            //counter++;
-            printQuestion(data, counter);
-            changeProgress(counter,data.length);
-            timer(delay, data, counter);
-
-        } else {
-            width-=smout;
-            $("#Bar-Time").css("width", width+"%")
-            if(width>25 ){
-                $("#Bar-Time").css("backgroundColor","#7aa6c2")
-            } else if(width<=25){
-                $("#Bar-Time").css("backgroundColor","red")
-             }
-
-        }
-    }, newDelay);
-
-}*/
 
 

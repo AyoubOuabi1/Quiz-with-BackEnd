@@ -61,6 +61,47 @@ require_once'./Controller/checkSession.php'
             </div>
         </div>
     </div>
+
+
+    <div class="modal fade" id="dataModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">My Information</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="username" class="col-form-label">User name</label>
+                            <input type="text" class="form-control"  id="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="score" class="col-form-label">Score</label>
+                            <input type="text" class="form-control"  id="score">
+                        </div>
+                        <div class="form-group">
+                            <label for="os" class="col-form-label">Operating System</label>
+                            <input type="text" class="form-control"  id="os">
+                        </div>
+                        <div class="form-group">
+                            <label for="browser" class="col-form-label">browser</label>
+                            <input type="text" class="form-control"  id="browser">
+                        </div>
+                        <div class="form-group">
+                            <label for="ip" class="col-form-label">Ip Address</label>
+                            <input type="text" class="form-control"  id="ip">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="./assets/script.js"></script>
 

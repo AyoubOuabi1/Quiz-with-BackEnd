@@ -3,8 +3,6 @@
 class User
 {
     private $id;
-    private $userName;
-    private $password;
     private $score;
     private $operatingSystem;
     private $browser;
